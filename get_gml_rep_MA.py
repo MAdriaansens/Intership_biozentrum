@@ -1,3 +1,6 @@
+#more simple iteration of the get-information code
+#SMFS
+
 import os
 import networkx as nx
 import pickle
