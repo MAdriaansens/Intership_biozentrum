@@ -1,3 +1,6 @@
+#with this script we used a known dataset so we had some candidates for best protein hits etc, so these were manually imported.
+#as imput we used data obtained from graphs of networkx
+
 import os
 import networkx
 import sys
@@ -114,7 +117,8 @@ def search_uniprot(uniprot_db, output_list_prot):
             Else_count = Else_count + 1
 
         #list_protein_kingdom = list_protein_kingdom.append(kingdom)
-#we became very interested in what our proteins contained so via extraction of a list of the most common function we performed a count of each protein. This would later be removed in a second iteration of this code using the max() functon + count
+#we became very interested in what our proteins contained so via extraction of a list of the most common function we performed a count of each protein. 
+#This would later be removed in a second iteration of this code using the max() functon + count
         count_KH = (sum('KH' in s for s in list_protein_function))
         count_NusA = (sum('NusA' in s for s in list_protein_function))
         count_Ribonuclease = (sum('Ribonuclease' in s for s in list_protein_function))
@@ -133,7 +137,6 @@ def search_uniprot(uniprot_db, output_list_prot):
 
 
    # print('\n' + 'Distribution of kingdoms:' + '\n' + 'no of Bacteria: {}'.format(Bacteria_count) + '\n' + 'no of Eukaryota: {}'.format(Eukaryota_count) + '\n'+ 'no of Archaea: {}'.format(Archaea_count) + '\n' + 'no of Else: {}'.format(Else_count) + '\n')
-
 
   #  print('\n' + 'Distribution of functions:' + '\n' + 'No KH_domain: {}'. format(count_KH) + '\n' + 'No S1_motif: {}'.format(count_S1_motif) + '\n' + 'No ATPase: {}'.format(count_ATPase) \
    # + '\n' + 'No KhpA: {}'.format(count_KhpA) + '\n' + 'No Beta_lactamase: {}'.format(count_Betalactamase) + '\n' + 'No GTPase: {}'.format(count_GTPase) + '\n' + 'No Ribonuclease: {}'.format(count_Ribonuclease) +'\n' + 'No Uncharacterized proteins: {}'.format(count_Uncharacterized) + '\n' + 'No SpoIIIJ: {}'.format(count_SpoIIIJ) + '\n' + 'No: 30S {}'.format(count_30S) + '\n' + 'No Flagellar: {}'.format(count_Flagellar)\
