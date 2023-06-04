@@ -47,6 +47,7 @@ def colapse_graph(graph, node_index):
     
     return new_edges
 
+#some small hiccups with larger databases but small changes in code of supervisor allowed this to be a bit more efficient. 
 def write_edges_list(edges, infolder):
     
     print('Writing edges file for cosmograph')
