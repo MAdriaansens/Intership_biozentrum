@@ -1,4 +1,5 @@
 #simple script using a quick way to get fasta files using a list of protein_ids against local DB. 
+#SMFS
 
 import os
 import pandas as pd
