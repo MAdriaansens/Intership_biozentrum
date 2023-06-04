@@ -1,3 +1,4 @@
+#this was the final iteration of getting information from gml, some old fluff is still inhere and the code could be improved upon, for example mutliprocessing could be added quite easily
 import os
 import networkx as nx
 import pickle
