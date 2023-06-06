@@ -6,6 +6,8 @@ import numpy as np
 
 infile = pd.read_csv('results/Archaea_comm_edge_list_si50_cov80-metadata.csv', sep = ';')
 list_cc = []
+
+#entire panda columns are string or float however to assure correct editing astype() is used 
 infile['id'] = infile['id'].astype(str) 
 infile['x'] = infile['x'].astype(float)
 infile['y'] = infile['y'].astype(float)
