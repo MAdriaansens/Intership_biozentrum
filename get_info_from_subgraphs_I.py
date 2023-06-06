@@ -4,11 +4,9 @@
 import os
 import networkx
 import sys
-import subprocess
 import argparse
 import glob
 import json
-from subprocess import check_output
 import re
 
 cluster_percentage = sys.argv[1]
