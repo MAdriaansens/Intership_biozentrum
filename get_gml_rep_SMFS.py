@@ -1,4 +1,4 @@
-#more simple iteration of the get-information code
+#inclusion of progress bar and multiprocessing to improve code
 #SMFS
 
 import os
@@ -18,8 +18,6 @@ print(infolder)
 print(outfolder)
 
 hits = list(glob.glob('{}/subgraphs/*.gml'.format(infolder)))
-
-
 subgraphs = list(glob.glob('{}/subgraphs/*json'.format(infolder)))
 
 #get UniprotDB
@@ -33,13 +31,13 @@ MONGO_PORT = 30077
 uniprot_db = uniprot.uniprot_extractor(mongo_host = MONGO_HOST, mongo_port = MONGO_PORT)
 interpro_db = interpro.interpro_db_diggested(mongo_host = MONGO_HOST, mongo_port = MONGO_PORT)
 
-
-def is_it_mixed(hits,outfolder):
+#get id per graph from networkx output
+def get_ID(hits,outfolder):
     if not os.path.isdir(outfolder):
         os.mkdir(outfolder)
     
     pool = ThreadPool(5)
-    results = pool.imap_unordered(is_it_mixed, hits)
+    results = pool.imap_unordered(get_ID, hits)
     
     for hit in hits:
         for i in tqdm(range(int(68474)), desc = "progress"):
@@ -59,7 +57,9 @@ def is_it_mixed(hits,outfolder):
                     with open('{}/protein_id_subgraph_{}.json'.format(outfolder, subgraph_id), 'w') as f:
                        json.dump(new_list, f)
     subgraphs = list(glob.glob('{}/*.json'.format(outfolder)))
-def search_kingdom_vs_uniprot(uniprot_db, subgraphs, outfolder): 
+    
+#search against uniprot(slowest step)
+def search_vs_uniprot(uniprot_db, subgraphs, outfolder): 
     #counts the kingdoms but also count the function of the most common protein
     #count_eukarya_only = 0
     #count_archaea_only = 0
@@ -72,7 +72,7 @@ def search_kingdom_vs_uniprot(uniprot_db, subgraphs, outfolder):
         os.mkdir("{}/protein_information".format(outfolder))
     
     pool = ThreadPool(5)
-    pool.imap_unordered(search_kingdom_vs_uniprot, subgraphs)
+    pool.imap_unordered(search_vs_uniprot, subgraphs)
 
     
     for subgraph in subgraphs:
@@ -112,5 +112,5 @@ def search_kingdom_vs_uniprot(uniprot_db, subgraphs, outfolder):
                 count = count + 1
         print(count)
 
-is_it_mixed(hits,outfolder)
-search_kingdom_vs_uniprot(uniprot_db, subgraphs, outfolder)
+get_ID(hits,outfolder)
+search_vs_uniprot(uniprot_db, subgraphs, outfolder)
