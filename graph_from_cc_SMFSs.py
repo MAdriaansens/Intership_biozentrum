@@ -21,8 +21,8 @@ for i in infile['id']:
 df_cc = pd.DataFrame(list_cc)
 
 infile['cc'] = df_cc
+#specify of which connected component you wish a plot, is the line below is excluded a plot of the entire graph will be made
 infile = infile[(infile['cc']== '50')]
-print(infile)
 sns.scatterplot(x = infile['x'], y = infile['y'], hue= infile['cc'])
 plt.show()
 #print('if this shows without plot you have been scammed')
