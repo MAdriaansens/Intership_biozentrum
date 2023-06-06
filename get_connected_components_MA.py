@@ -225,7 +225,12 @@ def collect_connected_components(G, nodes, min_size = 0, outfolder=outfolder, ou
                 node_cluster_class['node'] += community
                 node_cluster_class['communityID'] += ['{}[{}]'.format(component_index, community_index) for node in community]
                 node_cluster_class['subgraphID'] += [component_index for node in community]
-            
+                
+                #allow for the formation of a file containing which protein ID is in which community of which subgraph
+                file1 = open('{}/community_id.txt'.format(outfolder), 'a')
+                file1.write('subgraph id: {}, community_id {} with proteins {} \n'.format(component_index, community_index, community))
+                file1.close()
+
             print(' ... ... Subgraph:', component_index, 'No. nodes:', curr_size, 'No. communities:', len(communities))
             print(' ... ... Subgraph:', component_index, 'No. nodes:', curr_size)
 
