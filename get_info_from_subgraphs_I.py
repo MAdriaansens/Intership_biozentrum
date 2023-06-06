@@ -51,8 +51,7 @@ def is_it_mixed(hits, cluster_percentage):
     for hit in hits:
         subgraph_id = hit.split("_")[-1].split(".")[0]
         text = subprocess.check_output(['grep', 'label', '-h', '{}'.format(hit)], universal_newlines = True)
-        
-        i
+
         protein_id_devided = re.findall(pattern,text)
         uniprot_id = protein_id_devided[0]
         output_uniprot.append(uniprot_id)
