@@ -13,7 +13,7 @@ infile['x'] = infile['x'].astype(float)
 infile['y'] = infile['y'].astype(float)
 
 for i in infile['id']:
-    i = i.split('[')[-1].split(']')[0]
+    i = i.split('[')[0].split(']')[-1]
     list_cc.append(i)
     
 
