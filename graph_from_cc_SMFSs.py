@@ -1,13 +1,9 @@
 #make graph to see localisation of different connected components
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-import numpy as np
+import datashader as ds, pandas as pd, colorcet as cc
 
-infile = pd.read_csv('results/Archaea_comm_edge_list_si50_cov80-metadata.csv', sep = ';')
+infile = pd.read_csv('Archaea_comm_edge_list_si50_cov80-metadata.csv', sep = ';')
 list_cc = []
 
-#entire panda columns are string or float however to assure correct editing astype() is used 
 infile['id'] = infile['id'].astype(str) 
 infile['x'] = infile['x'].astype(float)
 infile['y'] = infile['y'].astype(float)
@@ -18,11 +14,12 @@ for i in infile['id']:
     
 
 
-df_cc = pd.DataFrame(list_cc)
+df = pd.DataFrame(list_cc)
 
-infile['cc'] = df_cc
-#specify of which connected component you wish a plot, is the line below is excluded a plot of the entire graph will be made
-infile = infile[(infile['cc']== '50')]
-sns.scatterplot(x = infile['x'], y = infile['y'], hue= infile['cc'])
-plt.show()
-#print('if this shows without plot you have been scammed')
+infile['cc'] = df
+    #print(infile['cc'])
+    #infile = infile[(infile['cc']== '0') |(infile['cc']== '1') |(infile['cc']== '2') |(infile['cc']== '3')|(infile['cc']== '4')]
+    #print(infile)
+    
+agg = ds.Canvas().points(infile, 'x', 'y')
+ds.tf.set_background(ds.tf.shade(agg, cmap=cc.isolum), "black")
