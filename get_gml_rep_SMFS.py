@@ -1,4 +1,4 @@
-#inclusion of progress bar and multiprocessing to improve code
+#inclusion of progress bar and multiprocessing 
 #works on larger Uniprot sets, due regex exp and directionairies
 #SMFS
 
