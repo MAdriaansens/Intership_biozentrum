@@ -1,4 +1,5 @@
 #with this script we used a known dataset so we had some candidates for best protein hits etc, so these were manually imported.
+#works to get a lot of information out of KH_peptide and known datasets
 #as imput we used data obtained from graphs of networkx
 
 import os
