@@ -1,4 +1,5 @@
 #inclusion of progress bar and multiprocessing to improve code
+#works well for KH-peptide curated dataset does not work on larger Uniprot sets, due regex exp and directionairies
 #SMFS
 
 import os
