@@ -1,0 +1,6 @@
+#activate old python to run NC_program
+source venv_nc/bin/activate
+
+pip install numpy==1.7.1
+
+pip install IPython==0.10.2
